@@ -38,5 +38,28 @@ int main() {
         k++;
     } while (k < movimentoRainha);
 
+    printf("\n");
+
+    // ================= CAVALO =================
+    // O cavalo se move em "L": duas casas para baixo e uma para a esquerda
+    // Utilizando loops aninhados (FOR externo + WHILE interno)
+    int casasParaBaixo = 2;
+    int casasParaEsquerda = 1;
+
+    printf("Movimento do Cavalo:\n");
+
+    // Loop externo com FOR: simula a repetição do movimento completo em "L"
+    for (int movimento = 0; movimento < 1; movimento++) {  // Apenas 1 movimento "L"
+        // Loop interno com WHILE: movimento vertical (duas casas para baixo)
+        int passo = 0;
+        while (passo < casasParaBaixo) {
+            printf("Baixo\n");
+            passo++;
+        }
+
+        // Movimento horizontal (uma casa para a esquerda)
+        printf("Esquerda\n");
+    }
+
     return 0;
 }
