@@ -1,65 +1,80 @@
 #include <stdio.h>
 
+// ======== Funções Recursivas ========
+
+// TORRE - Movimento para a Direita
+void moverTorre(int casas) {
+    if (casas <= 0) return;
+    printf("Direita\n");
+    moverTorre(casas - 1);  // Chamada recursiva
+}
+
+// RAINHA - Movimento para a Esquerda
+void moverRainha(int casas) {
+    if (casas <= 0) return;
+    printf("Esquerda\n");
+    moverRainha(casas - 1);  // Chamada recursiva
+}
+
+// BISPO - Movimento Diagonal com Recursão + Loops Aninhados
+void moverBispoRecursivo(int linha, int max) {
+    if (linha >= max) return;
+
+    for (int coluna = 0; coluna < max; coluna++) {
+        if (linha == coluna) {
+            printf("Cima Direita\n");
+        }
+    }
+
+    moverBispoRecursivo(linha + 1, max);  // Próxima linha recursivamente
+}
+
+// ======== Movimento do Cavalo com Loops Complexos ========
+void moverCavalo(int movimentosMaximos) {
+    for (int i = 0; i < movimentosMaximos; i++) {
+        for (int cima = 0; cima <= 2; cima++) {
+            if (cima == 2) {
+                for (int direita = 0; direita <= 1; direita++) {
+                    if (direita == 1) {
+                        printf("Cima\n");
+                        printf("Cima\n");
+                        printf("Direita\n");
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+}
+
 int main() {
-    // Quantidade de casas a serem percorridas por cada peça
+    // Entradas definidas diretamente no código
     int movimentoTorre = 5;
     int movimentoBispo = 5;
     int movimentoRainha = 8;
+    int movimentosCavalo = 2;
 
     // ================= TORRE =================
-    // A torre se move em linha reta horizontal (para a direita)
-    // Utilizando estrutura de repetição FOR
     printf("Movimento da Torre:\n");
-    for (int i = 0; i < movimentoTorre; i++) {
-        printf("Direita\n");
-    }
-
+    moverTorre(movimentoTorre);
     printf("\n");
 
     // ================= BISPO =================
-    // O bispo se move na diagonal (para cima e à direita)
-    // Utilizando estrutura de repetição WHILE
     printf("Movimento do Bispo:\n");
-    int j = 0;
-    while (j < movimentoBispo) {
-        printf("Cima Direita\n");
-        j++;
-    }
-
+    moverBispoRecursivo(0, movimentoBispo);
     printf("\n");
 
     // ================= RAINHA =================
-    // A rainha se move em qualquer direção (para a esquerda neste caso)
-    // Utilizando estrutura de repetição DO-WHILE
     printf("Movimento da Rainha:\n");
-    int k = 0;
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while (k < movimentoRainha);
-
+    moverRainha(movimentoRainha);
     printf("\n");
 
     // ================= CAVALO =================
-    // O cavalo se move em "L": duas casas para baixo e uma para a esquerda
-    // Utilizando loops aninhados (FOR externo + WHILE interno)
-    int casasParaBaixo = 2;
-    int casasParaEsquerda = 1;
-
     printf("Movimento do Cavalo:\n");
-
-    // Loop externo com FOR: simula a repetição do movimento completo em "L"
-    for (int movimento = 0; movimento < 1; movimento++) {  // Apenas 1 movimento "L"
-        // Loop interno com WHILE: movimento vertical (duas casas para baixo)
-        int passo = 0;
-        while (passo < casasParaBaixo) {
-            printf("Baixo\n");
-            passo++;
-        }
-
-        // Movimento horizontal (uma casa para a esquerda)
-        printf("Esquerda\n");
-    }
+    moverCavalo(movimentosCavalo);
+    printf("\n");
 
     return 0;
 }
